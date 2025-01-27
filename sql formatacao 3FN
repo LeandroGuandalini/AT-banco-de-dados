@@ -1,0 +1,229 @@
+.mode table
+
+CREATE table artista (
+    id integer primary key autoincrement,
+    nome TEXT NOT NULL,
+    cnpj TEXT NOT NULL,
+    email TEXT NOT NULL 
+);
+
+CREATE TABLE producao (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    titulo TEXT NOT NULL,
+    codigo INTEGER NOT NULL,
+    preco REAL NOT NULL,
+    disponivel_venda INTEGER NOT NULL,
+    data_lancamento DATE NOT NULL,
+    tipo TEXT NOT NULL,
+    artista_id INTEGER NOT NULL,
+    quantidade_vendida INTEGER NOT NULL,
+    FOREIGN KEY (artista_id) REFERENCES artista(id)
+);
+
+CREATE TABLE album (
+    producao_id INTEGER PRIMARY KEY,
+    numero_faixas INTEGER,
+    data_evento DATE,
+    FOREIGN KEY (producao_id) REFERENCES producao(id)
+);
+
+CREATE TABLE single(
+    producao_id INTEGER PRIMARY KEY,
+    duracao REAL,
+    FOREIGN KEY (producao_id) REFERENCES producao(id)
+);
+
+INSERT INTO artista (nome, cnpj, email) VALUES
+('João Mendes', '12.345.678/0001-99', 'joao.mendes@email.com'),
+('Clara Santos', '98.765.432/0001-88', 'clara.santos@email.com'),
+('Lucas Almeida', '45.678.912/0001-77', 'lucas.almeida@email.com'),
+('Marina Souza', '65.432.198/0001-66', 'marina.souza@email.com'),
+('Carlos Lima', '78.912.345/0001-55', 'carlos.lima@email.com'),
+('Ana Ribeiro', '12.345.678/0001-99', 'ana.ribeiro@email.com'),
+('Ricardo Oliveira', '98.765.432/0001-88', 'ricardo.oliveira@email.com'),
+('Beatriz Costa', '45.678.912/0001-77', 'beatriz.costa@email.com'),
+('Thiago Pereira', '65.432.198/0001-66', 'thiago.pereira@email.com'),
+('Sofia Martins', '78.912.345/0001-55', 'sofia.martins@email.com'),
+('Eduardo Teixeira', '12.345.678/0001-99', 'edu.teixeira@email.com'),
+('Amanda Rocha', '98.765.432/0001-88', 'amanda.rocha@email.com'),
+('Rafael Borges', '45.678.912/0001-77', 'rafael.borges@email.com'),
+('Fernanda Santos', '65.432.198/0001-66', 'fernanda.santos@email.com'),
+('Gabriel Nogueira', '78.912.345/0001-55', 'gabriel.nogueira@email.com'),
+('Vitória Lopes', '12.345.678/0001-99', 'vitoria.lopes@email.com'),
+('Felipe Araújo', '98.765.432/0001-88', 'felipe.araujo@email.com'),
+('Júlia Azevedo', '45.678.912/0001-77', 'julia.azevedo@email.com'),
+('Paulo Vasconcelos', '65.432.198/0001-66', 'paulo.vasconcelos@email.com'),
+('Carolina Ferreira', '78.912.345/0001-55', 'carolina.ferreira@email.com'),
+('Renan Costa', '12.345.678/0001-99', 'renan.costa@email.com'),
+('Isabel Cardoso', '98.765.432/0001-88', 'isabel.cardoso@email.com'),
+('Pedro Souza', '45.678.912/0001-77', 'pedro.souza@email.com');
+
+INSERT INTO producao (titulo, codigo, preco, disponivel_venda, data_lancamento, tipo, artista_id, quantidade_vendida) VALUES
+('Vida em Cores', 5678, 10.5, 0, '2024-11-04', 'Single', 1, 56423164),
+('Sol e Lua', 1234, 7.99, 0, '2024-10-15', 'Álbum', 2, 65544861),
+('Noite Infinita', 2345, 8.99, 1, '2024-09-10', 'Single', 3, 42314861),
+('Festa na Cidade', 3456, 10.99, 1, '2024-05-09', 'Álbum', 4, 23165481),
+('Chuva de Verão', 4567, 11.9, 1, '2024-07-25', 'Single', 5, 32156651),
+('Luz na Escuridão', 5678, 6.5, 1, '2024-06-20', 'Álbum', 6, 115486321),
+('Vento Forte', 6789, 7.7, 0, '2024-08-14', 'Single', 7, 321654685),
+('O Caminho', 7890, 12.3, 1, '2024-05-10', 'Álbum', 8, 321654654),
+('Horizonte Azul', 8901, 9.99, 1, '2024-04-08', 'Single', 9, 564654231),
+('Sonhos Inalcançáveis', 9012, 8.25, 0, '2024-03-12', 'Álbum', 10, 68584231),
+('Cores da Vida', 1235, 10.0, 1, '2024-02-17', 'Álbum', 11, 55646543),
+('Gotas de Saudade', 2346, 7.99, 1, '2024-01-30', 'Single', 12, 123456789),
+('Mundo Encantado', 3457, 9.5, 0, '2023-12-20', 'Single', 13, 32574855),
+('Na Estrada', 4568, 11.75, 0, '2023-11-20', 'Álbum', 14, 65487325),
+('Chão e Céu', 5679, 6.3, 0, '2023-10-15', 'Single', 15, 65346574),
+('Ver o sem Fim', 6780, 9.95, 1, '2023-09-20', 'Álbum', 16, 321564674),
+('Trilha do Tempo', 7891, 8.0, 1, '2023-08-10', 'Single', 17, 32158895),
+('Onde Estão Meus Sonhos', 8902, 7.3, 1, '2023-07-12', 'Single', 18, 32165475),
+('Na Contramão', 9013, 10.5, 1, '2023-06-15', 'Álbum', 19, 324468768),
+('Céu Azul', 2347, 12.2, 0, '2023-05-10', 'Single', 20, 13246576),
+('Liberdade', 3458, 8.54, 1, '2023-04-12', 'Álbum', 21, 132148967),
+('Lembranças', 4569, 9.35, 1, '2023-03-15', 'Single', 22, 321456745),
+('Paz e Amor', 5670, 8.17, 1, '2023-02-17', 'Álbum', 23, 321354685);
+
+INSERT INTO album (producao_id, numero_faixas, data_evento) VALUES
+(2, 8, '2024-10-20'),
+(4, 12, '2024-09-15'),
+(6, 10, '2024-06-25'),
+(8, 15, '2024-05-15'),
+(10, 9, '2024-03-25'),
+(11, 13, '2024-02-25'),
+(14, 10, '2023-11-30'),
+(16, 14, '2023-09-25'),
+(19, 12, '2023-06-20'),
+(21, 10, '2023-04-20'),
+(23, 15, '2023-02-25');
+
+INSERT INTO single (producao_id, duracao) VALUES
+(1, 3.5),
+(3, 4.2),
+(5, 3.0),
+(7, 4.5),
+(9, 3.6),
+(12, 3.8),
+(13, 4.0),
+(15, 5.2),
+(17, 2.0),
+(18, 3.7),
+(20, 4.1),
+(22, 4.0);
+
+--Quantidade vendida por tipo
+SELECT
+    p.tipo AS tipo_producao,
+    SUM(p.quantidade_vendida) AS quantidade_vendida_total
+FROM
+    producao p
+GROUP BY
+    p.tipo;
+
+-- Lucro bruto de álbuns e singles
+SELECT 
+    p.tipo AS tipo_producao,
+    SUM(p.preco*p.quantidade_vendida) AS lucro_total
+FROM
+    producao p
+GROUP BY
+    p.tipo;
+    
+-- Cálculo do gasto total em cada tipo de produção
+SELECT
+    p.tipo AS tipo_producao,
+    2.5*SUM(p.quantidade_vendida) AS gasto_total --cada single vendido custa 2,5 para a produtora
+FROM producao p
+WHERE tipo like '%Single'
+GROUP BY p.tipo;
+
+SELECT
+    p.tipo AS tipo_producao,
+    4*SUM(p.quantidade_vendida) AS gasto_total --cada álbum vendido custa 4 para a produtora
+FROM producao p
+WHERE tipo like '%Álbum'
+GROUP BY p.tipo;
+
+-- Ticket médio por tipo de produção
+SELECT
+    p.tipo AS tipo_producao,
+    ROUND(avg(p.preco), 2) AS ticket_medio
+FROM producao p
+GROUP BY p.tipo;
+
+-- Top 3 produções mais lucrativas (álbuns e singles juntos)
+SELECT
+    p.titulo,
+    p.tipo,
+    p.preco,
+    p.quantidade_vendida
+FROM producao p
+ORDER BY p.preco DESC
+LIMIT 3;
+
+-- Lucro totasl por artista (álbuns e singles separados)
+SELECT
+    a.nome as artista,
+    p.tipo AS tipo_producao,
+    (p.preco)*p.quantidade_vendida AS lucro_total
+FROM
+    artista a
+JOIN 
+    producao p ON a.id = p.artista_id
+GROUP BY
+    a.nome, p.tipo
+ORDER BY
+    lucro_total DESC;
+
+-- quantidade de vendas por tipo de produção
+SELECT 
+    p.tipo AS tipo_producao,
+    SUM(p.quantidade_vendida) AS quantidade_total
+FROM
+    producao p
+GROUP BY
+    p.tipo;
+    
+
+--Lucro líquido total por tipo de produção
+SELECT 
+    p.tipo AS tipo_producao,
+    SUM(p.preco * p.quantidade_vendida) - (SUM(p.quantidade_vendida)*2.5) AS lucro_liquido
+FROM
+    producao p
+WHERE p.tipo like '%Single%'
+GROUP BY
+    p.tipo;
+
+SELECT 
+    p.tipo AS tipo_producao,
+    SUM(p.preco * p.quantidade_vendida) - (SUM(p.quantidade_vendida)*4) AS lucro_liquido
+FROM
+    producao p
+WHERE p.tipo like '%Álbum%'
+GROUP BY
+    p.tipo;
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
