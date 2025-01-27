@@ -1,0 +1,132 @@
+CREATE TABLE gravadora (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_artista TEXT NOT NULL,
+    cnpj_artista TEXT NOT NULL,
+    email_artista TEXT NOT NULL,
+    titulo_producao TEXT NOT NULL,
+    codigo_producao INTEGER NOT NULL,
+    preco_producao REAL NOT NULL,
+    disponivel_venda INTEGER NOT NULL,
+    duracao_single REAL,
+    data_lancamento DATE NOT NULL,
+    numero_faixas INTEGER,
+    data_evento DATE,
+    quantidade_vendida INTEGER NOT NULL,
+    tipo TEXT NOT NULL
+);
+
+INSERT INTO gravadora (nome_artista, cnpj_artista, email_artista, titulo_producao, codigo_producao, preco_producao, disponivel_venda, duracao_single, data_lancamento, numero_faixas, data_evento, quantidade_vendida, tipo) VALUES
+('João Mendes','12.345.678/0001-99','joao.mendes@email.com','Vida em Cores',5678,10.5,0,3.5,'2024-11-04',NULL,NULL,56423164,'Single'),
+('Clara Santos','98.765.432/0001-88','clara.santos@email.com','Sol e Lua',1234,7.99,0,NULL,'2024-10-15',8,'2024-10-20',65544861,'Álbum'),
+('Lucas Almeida','45.678.912/0001-77','lucas.almeida@email.com','Noite Infinita',2345,8.99,1,4.2,'2024-09-10',NULL,NULL,42314861,'Single'),
+('Marina Souza','65.432.198/0001-66','marina.souza@email.com','Festa na Cidade',3456,10.99,1,NULL,'2024-05-09',12,'2024-09-15',23165481,'Álbum'),
+('Carlos Lima','78.912.345/0001-55','carlos.lima@email.com','Chuva de Verão',4567,11.9,1,3,'2024-07-25',NULL,NULL,32156651,'Single'),
+('Ana Ribeiro','12.345.678/0001-99','ana.ribeiro@email.com','Luz na Escuridão',5678,6.5,1,NULL,'2024-06-20',10,'2024-06-25',115486321,'Álbum'),
+('Ricardo Oliveira','98.765.432/0001-88','ricardo.oliveira@email.com','Vento Forte',6789,7.7,0,4.5,'2024-08-14',NULL,NULL,321654685,'Single'),
+('Beatriz Costa','45.678.912/0001-77','beatriz.costa@email.com','O Caminho',7890,12.3,1,NULL,'2024-05-10',15,'2024-05-15',321654654,'Álbum'),
+('Thiago Pereira','65.432.198/0001-66','thiago.pereira@email.com','Horizonte Azul',8901,9.99,1,3.6,'2024-04-08',NULL,NULL,564654231,'Single'),
+('Sofia Martins','78.912.345/0001-55','sofia.martins@email.com','Sonhos Inalcançáveis',9012,8.25,0,NULL,'2024-03-12',9,'2024-03-25',68584231,'Álbum'),
+('Eduardo Teixeira','12.345.678/0001-99','edu.teixeira@email.com','Cores da Vida',1235,10,1,NULL,'2024-02-17',13,'2024-02-25',55646543,'Álbum'),
+('Amanda Rocha','98.765.432/0001-88','amanda.rocha@email.com','Gotas de Saudade',2346,7.99,1,3.8,'2024-01-30',NULL,NULL,123456789,'Single'),
+('Rafael Borges','45.678.912/0001-77','rafael.borges@email.com','Mundo Encantado',3457,9.5,0,4,'2023-12-20',NULL,NULL,32574855,'Single'),
+('Fernanda Santos','65.432.198/0001-66','fernanda.santos@email.com','Na Estrada',4568,11.75,0,NULL,'2023-11-20',10,'2023-11-30',65487325,'Álbum'),
+('Gabriel Nogueira','78.912.345/0001-55','gabriel.nogueira@email.com','Chão e Céu',5679,6.3,0,5.2,'2023-10-15',NULL,NULL,65346574,'Single'),
+('Vitória Lopes','12.345.678/0001-99','vitoria.lopes@email.com','Ver o sem Fim',6780,9.95,1,NULL,'2023-09-20',14,'2023-09-25',321564674,'Álbum'),
+('Felipe Araújo','98.765.432/0001-88','felipe.araujo@email.com','Trilha do Tempo',7891,8.0,3,2,'2023-08-10',NULL,NULL,32158895,'Single'),
+('Júlia Azevedo','45.678.912/0001-77','julia.azevedo@email.com','Onde Estão Meus Sonhos',8902,7.3,1,3.7,'2023-07-12',NULL,NULL,32165475,'Single'),
+('Paulo Vasconcelos','65.432.198/0001-66','paulo.vasconcelos@email.com','Na Contramão',9013,10.5,1,NULL,'2023-06-15',12,20/06/2023,324468768,'Álbum'),
+('Carolina Ferreira','78.912.345/0001-55','carolina.ferreira@email.com','Céu Azul',2347,12.2,0,4.1,'2023-05-10',NULL,NULL,13246576,'Single'),
+('Renan Costa','12.345.678/0001-99','renan.costa@email.com','Liberdade',3458,8.54,1,NULL,'2023-04-12',10,'2023-04-20',132148967,'Álbum'),
+('Isabel Cardoso','98.765.432/0001-88','isabel.cardoso@email.com','Lembranças',4569,9.35,1,4,'2023-03-15',NULL,NULL,321456745,'Single'),
+('Pedro Souza','45.678.912/0001-77','pedro.souza@email.com','Paz e Amor',5670,8.17,1,NULL,'2023-02-17',15,'2023-02-25',321354685,'Álbum');
+
+
+-- 1 Exibe registro de artistas que têm produções disponíveis para venda
+SELECT nome_artista
+FROM Gravadora
+WHERE "disponivel_venda" = 1;
+
+-- 2 ordena as produções por "Preço da produção" de forma descrescente
+SELECT "titulo_producao", "preco_producao"
+FROM Gravadora
+ORDER BY CAST(REPLACE("preco_producao", ',', '.') AS DECIMAL) DESC;
+
+-- 3 lista todos os tipos de produção
+SELECT DISTINCT tipo
+FROM gravadora;
+
+-- 4 Filtrar produções que têm mais de 8 faixas no álbum
+SELECT nome_artista, titulo_producao, numero_faixas
+FROM gravadora
+WHERE numero_faixas > 8;
+
+-- 5 selecionar produções lançadas entre "01/01/2024" e "31/12/2024"
+SELECT nome_artista, titulo_producao, data_lancamento
+FROM gravadora
+WHERE data_lancamento BETWEEN '2024-01-01' AND '2024-12-31'
+ORDER BY data_lancamento ASC;
+
+-- 6 Encontrar produções de artistas específicos
+SELECT *
+FROM gravadora
+WHERE nome_artista IN ('João Mendes', 'Clara Santos');
+
+-- 7 Buscar produções que têm "caminho" no título
+SELECT titulo_producao
+FROM gravadora
+WHERE titulo_producao LIKE '%Caminho%';
+
+-- 8 Filtrar produções disponíveis para venda e do tipo "Álbum"
+SELECT *
+FROM gravadora
+WHERE disponivel_venda = 1 AND tipo = 'Álbum';
+
+-- 9 Verificar quais produções não possuem duração do single informada (é álbum)
+SELECT *
+FROM gravadora
+WHERE duracao_single IS NULL;
+
+-- 10 Substituir valores nulos de duracao_single por 0
+SELECT nome_artista, COALESCE (duracao_single, 0) AS duracao_single
+FROM gravadora;
+
+-- 11 Contar quantas produções estão disponíveis por tipo
+SELECT tipo, COUNT(*) AS total_producoes
+FROM gravadora 
+GROUP BY tipo;
+
+-- 12 Calcular o total de vendas de todos os álbuns
+SELECT tipo, SUM(quantidade_vendida ) AS total_vendido
+FROM gravadora
+WHERE tipo = 'Álbum'
+GROUP BY tipo;
+
+-- 13 Contar o total de registros na tabela
+SELECT COUNT(*) AS total_registros
+FROM gravadora;
+
+-- 14 Encontrar a duração mínima e máxima dos singles
+SELECT MIN(CAST(REPLACE(duracao_single,',','.') AS DECIMAL)) AS duracao_minima, MAX(CAST(REPLACE(duracao_single,',','.') AS DECIMAL)) AS duracao_maxima
+FROM gravadora;
+
+-- 15 Calcular a média de preços das produções
+SELECT ROUND(AVG(preco_producao),2) AS preco_medio
+FROM gravadora;
+
+-- 16 Filtrar tiipo de produções que venderam mais de 50 milhões de unidades
+SELECT tipo, SUM(quantidade_vendida) AS total_vendido
+FROM gravadora
+GROUP BY tipo
+HAVING SUM(quantidade_vendida) > 50000000;
+
+
+
+
+
+
+
+
+
+
+
+
